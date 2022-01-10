@@ -75,13 +75,13 @@ func validIPv6(ss []string) bool {
 	if len(str) == 0 || len(str) > 4 {
 		return false
 	}
-	if !validIPv6Runes(str) {
+	if !validIPv6Bytes(str) {
 		return false
 	}
 	return validIPv6(ss[1:])
 }
 
-func validIPv6Runes(s string) bool {
+func validIPv6Bytes(s string) bool {
 	if len(s) == 0 {
 		return true
 	}
@@ -89,5 +89,5 @@ func validIPv6Runes(s string) bool {
 	if !((r >= '0' && r <= '9') || (r >= 'a' && r <= 'f') || (r >= 'A' && r <= 'F')) {
 		return false
 	}
-	return validIPv6Runes(s[1:])
+	return validIPv6Bytes(s[1:])
 }
