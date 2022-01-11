@@ -1,9 +1,9 @@
 package main
 
 import (
-    "fmt"
-    "strconv"
-    "strings"
+	"fmt"
+	"strconv"
+	"strings"
 )
 
 /*
@@ -38,54 +38,54 @@ Explanation: This is neither a IPv4 address nor a IPv6 address.
 */
 
 func validIPAddress(queryIP string) string {
-    if ss := strings.Split(queryIP, "."); len(ss) == 4 {
-        if validIPv4(ss) {
-            return "IPv4"
-        }
-    }
-    if ss := strings.Split(queryIP, ":"); len(ss) == 8 {
-        if validIPv6(ss) {
-            return "IPv6"
-        }
-    }
-    return "Neither"
+	if ss := strings.Split(queryIP, "."); len(ss) == 4 {
+		if validIPv4(ss) {
+			return "IPv4"
+		}
+	}
+	if ss := strings.Split(queryIP, ":"); len(ss) == 8 {
+		if validIPv6(ss) {
+			return "IPv6"
+		}
+	}
+	return "Neither"
 }
 
 func validIPv4(ss []string) bool {
-    if len(ss) == 0 {
-        return true
-    }
-    num, err := strconv.Atoi(ss[0])
-    if err != nil || num > 255 || num < 0 {
-        return false
-    }
-    if str := fmt.Sprint(num); str != ss[0] {
-        return false
-    }
-    return validIPv4(ss[1:])
+	if len(ss) == 0 {
+		return true
+	}
+	num, err := strconv.Atoi(ss[0])
+	if err != nil || num > 255 || num < 0 {
+		return false
+	}
+	if str := fmt.Sprint(num); str != ss[0] {
+		return false
+	}
+	return validIPv4(ss[1:])
 }
 
 func validIPv6(ss []string) bool {
-    if len(ss) == 0 {
-        return true
-    }
-    str := ss[0]
-    if len(str) == 0 || len(str) > 4 {
-        return false
-    }
-    if !validIPv6Bytes(str) {
-        return false
-    }
-    return validIPv6(ss[1:])
+	if len(ss) == 0 {
+		return true
+	}
+	str := ss[0]
+	if len(str) == 0 || len(str) > 4 {
+		return false
+	}
+	if !validIPv6Bytes(str) {
+		return false
+	}
+	return validIPv6(ss[1:])
 }
 
 func validIPv6Bytes(s string) bool {
-    if len(s) == 0 {
-        return true
-    }
-    r := s[0]
-    if !( (r >= '0' && r <= '9') || (r >= 'a' && r <= 'f') || (r >= 'A' && r <= 'F') ) {
-        return false
-    }
-    return validIPv6Bytes(s[1:])
+	if len(s) == 0 {
+		return true
+	}
+	r := s[0]
+	if !((r >= '0' && r <= '9') || (r >= 'a' && r <= 'f') || (r >= 'A' && r <= 'F')) {
+		return false
+	}
+	return validIPv6Bytes(s[1:])
 }

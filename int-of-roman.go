@@ -41,24 +41,24 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 */
 
 func romanToInt(s string) int {
-    var intOfRom func(int, int, string) int
-    intOfRom = func(prev, total int, s string) int {
-        if len(s) == 0 {
-            return total
-        }
-        curr := hash[s[0]]
-        if curr > prev {
-            total = total + curr - 2 * prev
-        } else {
-            total = total + curr
-        }
-        return intOfRom(curr, total, s[1:])
-    }
-    return intOfRom(0, 0, s)
+	var intOfRom func(int, int, string) int
+	intOfRom = func(prev, total int, s string) int {
+		if len(s) == 0 {
+			return total
+		}
+		curr := hash[s[0]]
+		if curr > prev {
+			total = total + curr - 2*prev
+		} else {
+			total = total + curr
+		}
+		return intOfRom(curr, total, s[1:])
+	}
+	return intOfRom(0, 0, s)
 }
 
 var hash = map[byte]int{
-    'I': 1, 'V': 5, 'X': 10,
-    'L': 50, 'C': 100, 'D': 500,
-    'M': 1000,
+	'I': 1, 'V': 5, 'X': 10,
+	'L': 50, 'C': 100, 'D': 500,
+	'M': 1000,
 }
