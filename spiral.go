@@ -1,11 +1,9 @@
 package main
 
 /*
-Problem:
+Assumptions:
 - Argument: m*n matrix
 - Return: slice of elements in spiral order
-
-Assumptions:
 - The length of the slices are greater than or equal to 1 and less than or equal to 10
 - The elements are integers between -100 and 100
 - a slice of elements is in spiral order just in case
