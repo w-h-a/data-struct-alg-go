@@ -36,14 +36,15 @@ func isPalindrome(s string) bool {
 	s = strings.ToLower(s)
 	reg, _ := regexp.Compile("[^a-z0-9]+")
 	s = reg.ReplaceAllString(s, "")
-	i := 0
-	j := len(s) - 1
-	for i < j {
-		if s[i] != s[j] {
+	var check func(string) bool
+	check = func(s string) bool {
+		if len(s) == 0 || len(s) == 1 {
+			return true
+		}
+		if s[0] != s[len(s)-1] {
 			return false
 		}
-		i++
-		j--
+		return check(s[1 : len(s)-1])
 	}
-	return true
+	return check(s)
 }
