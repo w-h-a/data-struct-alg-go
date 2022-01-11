@@ -22,7 +22,7 @@ Output: 0
 
 */
 
-func strStr(haystack string, needle string) int {
+func strStr1(haystack string, needle string) int {
 	for i := 0; ; i++ {
 		for j := 0; ; j++ {
 			if j == len(needle) {
@@ -36,4 +36,15 @@ func strStr(haystack string, needle string) int {
 			}
 		}
 	}
+}
+
+func strStr2(haystack, needle string) int {
+	lenNeedle := len(needle)
+	lenHaystk := len(haystack)
+	for i := 0; i <= lenHaystk-lenNeedle; i++ {
+		if haystack[i:i+lenNeedle] == needle {
+			return i
+		}
+	}
+	return -1
 }
