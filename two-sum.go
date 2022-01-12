@@ -1,4 +1,4 @@
-package pointers
+package main
 
 /*
 Assumptions:
@@ -32,7 +32,7 @@ Algorithm:
         - update indexOfValue hash so that the current value of loop is associated with the current index
 */
 
-func TwoSum(numbers []int, target int) []int {
+func twoSum(numbers []int, target int) []int {
 	indexOfValue := map[int]int{}
 	for i, v := range numbers {
 		j, ok := indexOfValue[target-v]
