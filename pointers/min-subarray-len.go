@@ -1,8 +1,4 @@
-package binarysearch
-
-import (
-	"sort"
-)
+package pointers
 
 /*
 Assumptions:
@@ -27,6 +23,32 @@ Output: 0
 */
 
 func MinSubArrayLen(target int, nums []int) int {
-	sort.Ints(nums)
+	if len(nums) == 0 {
+		return 0
+	}
+	minLen := len(nums) + 1
+	s := 0
+	e := 0
+	sum := 0
+	for e < len(nums) {
+		sum += nums[e]
+		for sum >= target {
+			minLen = min(minLen, e-s+1)
+			leftNum := nums[s]
+			sum -= leftNum
+			s++
+		}
+		e++
+	}
+	if minLen == len(nums)+1 {
+		return 0
+	}
+	return minLen
+}
 
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }
