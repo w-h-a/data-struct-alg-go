@@ -1,4 +1,4 @@
-package main
+package misc
 
 /*
 Assumptions:
@@ -22,7 +22,7 @@ Output: [1,2,3,4,8,12,11,10,9,5,6,7]
 
 */
 
-func spiralOrder(matrix [][]int) []int {
+func SpiralOrder(matrix [][]int) []int {
 	result := []int{}
 	m := len(matrix)
 	n := len(matrix[0])

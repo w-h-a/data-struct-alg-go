@@ -1,4 +1,4 @@
-package main
+package misc
 
 import (
 	"fmt"
@@ -37,7 +37,7 @@ Explanation: This is neither a IPv4 address nor a IPv6 address.
 
 */
 
-func validIPAddress(queryIP string) string {
+func ValidIPAddress(queryIP string) string {
 	if ss := strings.Split(queryIP, "."); len(ss) == 4 {
 		if validIPv4(ss) {
 			return "IPv4"

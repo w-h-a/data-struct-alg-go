@@ -1,4 +1,4 @@
-package main
+package misc
 
 /*
 Assumptions:
@@ -40,7 +40,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
 */
 
-func romanToInt(s string) int {
+func RomanToInt(s string) int {
 	var intOfRom func(int, int, string) int
 	intOfRom = func(prev, total int, s string) int {
 		if len(s) == 0 {
