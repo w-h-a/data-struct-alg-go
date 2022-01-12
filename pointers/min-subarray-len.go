@@ -23,9 +23,6 @@ Output: 0
 */
 
 func MinSubArrayLen(target int, nums []int) int {
-	if len(nums) == 0 {
-		return 0
-	}
 	minLen := len(nums) + 1
 	s := 0
 	e := 0
