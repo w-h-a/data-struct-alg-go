@@ -1,4 +1,4 @@
-package main
+package pointers
 
 /*
 Assumptions:
@@ -22,7 +22,7 @@ Output: 0
 
 */
 
-func strStr1(haystack string, needle string) int {
+func StrStr1(haystack string, needle string) int {
 	for i := 0; ; i++ {
 		for j := 0; ; j++ {
 			if j == len(needle) {
@@ -38,7 +38,7 @@ func strStr1(haystack string, needle string) int {
 	}
 }
 
-func strStr2(haystack, needle string) int {
+func StrStr2(haystack, needle string) int {
 	lenNeedle := len(needle)
 	lenHaystk := len(haystack)
 	for i := 0; i <= lenHaystk-lenNeedle; i++ {

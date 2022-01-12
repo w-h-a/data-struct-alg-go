@@ -1,4 +1,4 @@
-package main
+package pointers
 
 import (
 	"regexp"
@@ -32,7 +32,7 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 
 */
 
-func isPalindrome(s string) bool {
+func IsPalindrome(s string) bool {
 	s = strings.ToLower(s)
 	reg, _ := regexp.Compile("[^a-z0-9]+")
 	s = reg.ReplaceAllString(s, "")
