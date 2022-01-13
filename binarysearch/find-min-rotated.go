@@ -22,12 +22,15 @@ Output: 11
 Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 
 Main idea:
-Carefully move lower bound up until either the element at lower bound is finally
-    less than the element at upper bound or the lower bound is identical to the upper bound
+Carefully move lower bound up until the element at lower bound is finally
+    less than the element at upper bound
 When do we move the lower bound?
     Whenever the mid point is still greater than the upper bound.
 On the other hand, if the mid point is less than the upper bound,
     we just need to reset the upper bound
+What about in the case where, we have something like: [7, 0]?
+    m needs to be lower bound to ensure l moves in which case we have our answer when l == u
+    even when xs[l] == xs[u]
 */
 
 func FindMin(xs []int) int {
@@ -43,5 +46,5 @@ func FindMin(xs []int) int {
 		u = m
 		return bSearch(l, u, (l+u)/2)
 	}
-	return xs[bSearch(0, len(xs)-1, len(xs)/2)]
+	return xs[bSearch(0, len(xs)-1, (len(xs)-1)/2)]
 }
