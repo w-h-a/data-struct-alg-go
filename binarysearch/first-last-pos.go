@@ -25,30 +25,41 @@ Output: [-1,-1]
 */
 
 func SearchRange(xs []int, target int) []int {
-	if len(xs) == 0 {
-		return []int{-1, -1}
-	}
-	var bSearch func(int, int, int) []int
-	bSearch = func(l, u, m int) []int {
+	leftResult, rightResult := -1, -1
+	var findLeftMost func(int, int, int) int
+	findLeftMost = func(l, u, m int) int {
 		if l > u {
-			return []int{-1, -1}
+			return leftResult
 		}
 		if xs[m] < target {
 			l = m + 1
-			return bSearch(l, u, (l+u)/2)
+			return findLeftMost(l, u, (l+u)/2)
 		}
 		if xs[m] > target {
 			u = m - 1
-			return bSearch(l, u, (l+u)/2)
+			return findLeftMost(l, u, (l+u)/2)
 		}
-		n := m
-		for n != -1 && xs[n] == target {
-			n--
-		}
-		for m != len(xs) && xs[m] == target {
-			m++
-		}
-		return []int{n + 1, m - 1}
+		leftResult = m
+		u = m - 1
+		return findLeftMost(l, u, (l+u)/2)
 	}
-	return bSearch(0, len(xs)-1, len(xs)/2)
+	var findRightMost func(int, int, int) int
+	findRightMost = func(l, u, m int) int {
+		if l > u {
+			return rightResult
+		}
+		if xs[m] < target {
+			l = m + 1
+			return findRightMost(l, u, (l+u)/2)
+		}
+		if xs[m] > target {
+			u = m - 1
+			return findRightMost(l, u, (l+u)/2)
+		}
+		rightResult = m
+		l = m + 1
+		return findRightMost(l, u, (l+u)/2)
+	}
+	leftMost, rightMost := findLeftMost(0, len(xs)-1, len(xs)/2), findRightMost(0, len(xs)-1, len(xs)/2)
+	return []int{leftMost, rightMost}
 }

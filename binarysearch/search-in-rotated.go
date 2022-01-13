@@ -21,31 +21,5 @@ Output: -1
 */
 
 func Search(xs []int, target int) int {
-	var bSearch func(int, int, int) int
-	bSearch = func(l, u, m int) int {
-		if l > u {
-			return -1
-		}
-		if xs[m] == target {
-			return m
-		}
-		if xs[l] <= xs[m] {
-			if xs[l] <= target && target < xs[m] {
-				u = m - 1
-				return bSearch(l, u, (l+u)/2)
-			}
-			l = m + 1
-			return bSearch(l, u, (l+u)/2)
-		}
-		if xs[m] <= xs[u] {
-			if xs[m] < target && target <= xs[u] {
-				l = m + 1
-				return bSearch(l, u, (l+u)/2)
-			}
-			u = m - 1
-			return bSearch(l, u, (l+u)/2)
-		}
-		return -1
-	}
-	return bSearch(0, len(xs)-1, len(xs)/2)
+    return -1
 }
