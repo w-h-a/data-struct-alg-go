@@ -32,4 +32,11 @@ func main() {
 	fmt.Println("6", lists.SliceOfList(list6))
 	fmt.Println("0", lists.SliceOfList(list))
 
+	list7 := lists.UpTo(1, 2)
+	list8 := lists.Reverse(list7)
+	fmt.Println("7", lists.SliceOfList(list7))
+	fmt.Println("8", lists.SliceOfList(list8))
+
+	fmt.Println(lists.IsPalindrome(list7))
+
 }
