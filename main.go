@@ -31,4 +31,5 @@ func main() {
 	list6 := lists.Reverse(list)
 	fmt.Println("6", lists.SliceOfList(list6))
 	fmt.Println("0", lists.SliceOfList(list))
+
 }

@@ -21,5 +21,5 @@ Output: -1
 */
 
 func Search(xs []int, target int) int {
-    return -1
+	return -1
 }
