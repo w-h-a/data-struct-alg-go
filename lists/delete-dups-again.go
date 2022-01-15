@@ -18,20 +18,19 @@ Input: head = [1,1,1,2,3]
 Output: [2,3]
 */
 
-
 func DeleteAllDuplicates(xs *ListNode) *ListNode {
-    var keepGoing func(*ListNode, *ListNode) *ListNode
-    keepGoing = func(prev, curr *ListNode) *ListNode {
-        if curr == nil {
-            return nil
-        }
-        if (prev != nil && curr != nil && prev.Val == curr.Val) || (curr != nil && curr.Next != nil && curr.Val == curr.Next.Val) {
-            return keepGoing(curr, curr.Next)
-        }
-        return &ListNode{
-            Val: curr.Val,
-            Next: keepGoing(curr, curr.Next),
-        }
-    }
-    return keepGoing(nil, xs)
+	var keepGoing func(*ListNode, *ListNode) *ListNode
+	keepGoing = func(prev, curr *ListNode) *ListNode {
+		if curr == nil {
+			return nil
+		}
+		if (prev != nil && curr != nil && prev.Val == curr.Val) || (curr != nil && curr.Next != nil && curr.Val == curr.Next.Val) {
+			return keepGoing(curr, curr.Next)
+		}
+		return &ListNode{
+			Val:  curr.Val,
+			Next: keepGoing(curr, curr.Next),
+		}
+	}
+	return keepGoing(nil, xs)
 }
