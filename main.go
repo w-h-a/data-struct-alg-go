@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"time"
 
+	"github.com/w-h-a/more-dsa/binarysearch"
 	"github.com/w-h-a/more-dsa/recursion"
 	"github.com/w-h-a/more-dsa/sorting"
 )
@@ -19,6 +20,7 @@ func main() {
 
 	fmt.Println(recursion.MyPow(3.0, 40))
 
+	binarysearch.DivAndConqFindPeakElement([]int{1, 2, 3, 1})
 }
 
 func randFloats(min, max float64, n int, result []float64) []float64 {

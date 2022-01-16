@@ -54,3 +54,40 @@ func FindPeakElement(xs []int) int {
 	}
 	return bSearch(0, len(xs), len(xs)/2)
 }
+
+type Peak struct {
+	Idx  int
+	Val  int
+	Size int
+}
+
+func DivAndConqFindPeakElement(xs []int) int {
+	return div(xs, 0, len(xs)-1).Idx
+}
+
+func div(xs []int, low, high int) *Peak {
+	if low == high {
+		return &Peak{
+			Idx:  0,
+			Val:  xs[low],
+			Size: 1,
+		}
+	}
+	k := (low + high) / 2
+	return conq(div(xs, low, k), div(xs, k+1, high))
+}
+
+func conq(L, R *Peak) *Peak {
+	if L.Val > R.Val {
+		return &Peak{
+			Idx:  L.Idx,
+			Val:  L.Val,
+			Size: L.Size + R.Size,
+		}
+	}
+	return &Peak{
+		Idx:  R.Idx + L.Size,
+		Val:  R.Val,
+		Size: L.Size + R.Size,
+	}
+}

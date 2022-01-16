@@ -63,3 +63,65 @@ func SearchRange(xs []int, target int) []int {
 	leftMost, rightMost := findLeftMost(0, len(xs)-1, len(xs)/2), findRightMost(0, len(xs)-1, len(xs)/2)
 	return []int{leftMost, rightMost}
 }
+
+type Tally struct {
+	LeftMost  int
+	RightMost int
+	Size      int
+}
+
+func DivAndConqSearchRange(xs []int, target int) []int {
+	if len(xs) == 0 {
+		return []int{-1, -1}
+	}
+	result := divide(xs, target, 0, len(xs)-1)
+	return []int{result.LeftMost, result.RightMost}
+}
+
+func divide(xs []int, target, low, high int) *Tally {
+	if low == high {
+		if xs[low] == target {
+			return &Tally{
+				LeftMost:  0,
+				RightMost: 0,
+				Size:      1,
+			}
+		}
+		return &Tally{
+			LeftMost:  -1,
+			RightMost: -1,
+			Size:      1,
+		}
+	}
+	mid := (low + high) / 2
+	return conquer(divide(xs, target, low, mid), divide(xs, target, mid+1, high))
+}
+
+func conquer(L, R *Tally) *Tally {
+	if L.LeftMost != -1 && R.RightMost != -1 {
+		return &Tally{
+			LeftMost:  L.LeftMost,
+			RightMost: R.RightMost + L.Size,
+			Size:      L.Size + R.Size,
+		}
+	}
+	if L.LeftMost != -1 {
+		return &Tally{
+			LeftMost:  L.LeftMost,
+			RightMost: L.RightMost,
+			Size:      L.Size + R.Size,
+		}
+	}
+	if R.RightMost != -1 {
+		return &Tally{
+			LeftMost:  R.LeftMost + L.Size,
+			RightMost: R.RightMost + L.Size,
+			Size:      L.Size + R.Size,
+		}
+	}
+	return &Tally{
+		LeftMost:  -1,
+		RightMost: -1,
+		Size:      L.Size + R.Size,
+	}
+}
