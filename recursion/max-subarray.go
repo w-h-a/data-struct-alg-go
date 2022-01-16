@@ -1,4 +1,4 @@
-package dynamic
+package recursion
 
 import "math"
 
@@ -55,9 +55,7 @@ func divide(xs []int, low, high int) *Tally {
 		}
 	}
 	mid := (low + high) / 2
-	Left := divide(xs, low, mid)
-	Right := divide(xs, mid+1, high)
-	return conquer(Left, Right)
+	return conquer(divide(xs, low, mid), divide(xs, mid+1, high))
 }
 
 func conquer(L, R *Tally) *Tally {

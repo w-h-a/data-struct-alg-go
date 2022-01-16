@@ -5,7 +5,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/w-h-a/more-dsa/dynamic"
+	"github.com/w-h-a/more-dsa/recursion"
 	"github.com/w-h-a/more-dsa/sorting"
 )
 
@@ -17,8 +17,7 @@ func main() {
 	fmt.Println("quick", sorting.QuickSort(initial))
 	fmt.Println("merge", sorting.MergeSort(initial))
 
-	fmt.Println(dynamic.MyPow(3.0, 40))
-
+	fmt.Println(recursion.MyPow(3.0, 40))
 
 }
 
