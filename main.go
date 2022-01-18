@@ -25,6 +25,8 @@ func main() {
 	fmt.Println(recursion.ClimbStairs(4))
 
 	fmt.Println(recursion.MinPathSum([][]int{[]int{1, 2, 5}, []int{3, 2, 1}}))
+
+	fmt.Println(recursion.CoinChange([]int{1, 2, 5}, 11))
 }
 
 func randFloats(min, max float64, n int, result []float64) []float64 {
