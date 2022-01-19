@@ -16,6 +16,9 @@ Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 Input: nums = [3,2,1,0,4]
 Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+The second one is due to Trevor Kelly
+The third one is due to Josh Leath
 */
 
 func CanJump(xs []int) bool {
@@ -44,4 +47,32 @@ func CanJump(xs []int) bool {
 		return cache[key]
 	}
 	return memoized(0)
+}
+
+func CanJumpII(nums []int) bool {
+	pointer, maxReach := 0, 0
+	for maxReach < len(nums)-1 {
+		reach := pointer + nums[pointer]
+		if reach > maxReach {
+			maxReach = reach
+		}
+		if maxReach <= pointer {
+			return false
+		}
+		pointer++
+	}
+	return true
+}
+
+func CanJumpIII(nums []int) bool {
+	if len(nums) == 1 {
+		return true
+	}
+	lastPossible := len(nums) - 1
+	for i := len(nums) - 2; i >= 0; i-- {
+		if lastPossible <= i+nums[i] {
+			lastPossible = i
+		}
+	}
+	return lastPossible == 0
 }

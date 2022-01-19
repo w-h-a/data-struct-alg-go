@@ -48,3 +48,24 @@ func min(x, y int) int {
 	}
 	return y
 }
+
+func MinPathSumIter(grid [][]int) int {
+	m, n := len(grid)-1, len(grid[0])-1
+	for r := m; r >= 0; r-- {
+		for c := n; c >= 0; c-- {
+			if r == m && c == n {
+				continue
+			}
+			if r == m {
+				grid[r][c] = grid[r][c] + grid[r][c+1]
+				continue
+			}
+			if c == n {
+				grid[r][c] = grid[r][c] + grid[r+1][c]
+				continue
+			}
+			grid[r][c] = grid[r][c] + min(grid[r][c+1], grid[r+1][c])
+		}
+	}
+	return grid[0][0]
+}

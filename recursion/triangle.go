@@ -44,3 +44,12 @@ func MinimumTotal(triangle [][]int) int {
 	}
 	return memoized(m, n)
 }
+
+func MinimumTotalIter(triangle [][]int) int {
+	for r := len(triangle) - 2; r >= 0; r-- {
+		for c := len(triangle[r]) - 1; c >= 0; c-- {
+			triangle[r][c] = triangle[r][c] + min(triangle[r+1][c], triangle[r+1][c+1])
+		}
+	}
+	return triangle[0][0]
+}
