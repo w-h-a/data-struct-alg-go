@@ -44,8 +44,8 @@ func main() {
 			Right: &trees.TreeNode{Val: 3},
 		},
 		Right: &trees.TreeNode{
-			Val:   5,
-			Left:  &trees.TreeNode{Val: 6},
+			Val:   6,
+			Left:  &trees.TreeNode{Val: 5},
 			Right: &trees.TreeNode{Val: 7},
 		},
 	}
@@ -53,11 +53,17 @@ func main() {
 	fmt.Println(trees.Reflect(tree1))
 	fmt.Println(" ")
 	inOrder := trees.SliceInOrder(tree1)
+	fmt.Println("sliced in order: ", inOrder)
 	preOrder := trees.SlicePreOrder(tree1)
+	fmt.Println("sliced pre order: ", preOrder)
 	postOrder := trees.SlicePostOrder(tree1)
+	fmt.Println("sliced post order: ", postOrder)
+	levelOrder := trees.SliceLevelOrder(tree1)
+	fmt.Println("sliced level order: ", levelOrder)
 	fmt.Println("InOrder ", trees.BalancedTreeInOrder(inOrder))
 	fmt.Println("PreOrder ", trees.BalancedTreePreOrder(preOrder))
 	fmt.Println("PostOrder ", trees.BalancedTreePostOrder(postOrder))
+	fmt.Println("HERE LEVEL ORDER ", trees.BalancedTreeLevelOrder(levelOrder))
 	fmt.Println(" ")
 	tree2 := &trees.TreeNode{
 		Val: 50,

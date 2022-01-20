@@ -2,68 +2,51 @@ package queues
 
 import (
 	"errors"
+
+	"github.com/w-h-a/more-dsa/lists"
 )
 
 var (
 	ErrQueueIsNil = errors.New("queue is nil")
 )
 
-/*
-type Queuer interface {
-    Enq(x int) *Queue
-    Head() (int, error)
-    Deq() (*Queue, error)
-}
-
 type Queue struct {
-    Data []int
-}
-
-func (q *Queue) Enq(x int) *Queue {
-    return &Queue{
-        Data: append(q.Data, x),
-    }
-}
-
-func (q *Queue) Head() (int, error) {
-    if q == nil || len(q.Data) == 0 {
-        return 0, ErrQueueIsNil
-    }
-    return q.Data[0], nil
-}
-
-func (q *Queue) Deq() (*Queue, error) {
-    if q == nil || len(q.Data) == 0 {
-        return nil, ErrQueueIsNil
-    }
-    return &Queue{
-        Data: q.Data[1:],
-    }, nil
-}
-*/
-
-type Queue struct {
-	Data []int
+	Heads *lists.ListNode
+	Tails *lists.ListNode
 }
 
 func Enq(q *Queue, x int) *Queue {
-	return &Queue{
-		Data: append(q.Data, x),
-	}
+	return normalize(&Queue{
+		Heads: q.Heads,
+		Tails: &lists.ListNode{
+			Val:  x,
+			Next: q.Tails.Next,
+		},
+	})
 }
 
 func Head(q *Queue) (int, error) {
-	if q == nil || len(q.Data) == 0 {
+	if q == nil || q.Heads == nil {
 		return 0, ErrQueueIsNil
 	}
-	return q.Data[0], nil
+	return q.Heads.Val, nil
 }
 
 func Deq(q *Queue) (*Queue, error) {
-	if q == nil || len(q.Data) == 0 {
+	if q == nil || q.Heads == nil {
 		return nil, ErrQueueIsNil
 	}
-	return &Queue{
-		Data: q.Data[1:],
-	}, nil
+	return normalize(&Queue{
+		Heads: q.Heads.Next,
+		Tails: q.Tails,
+	}), nil
+}
+
+func normalize(q *Queue) *Queue {
+	if q.Heads == nil {
+		return &Queue{
+			Heads: lists.Reverse(q.Tails),
+		}
+	}
+	return q
 }

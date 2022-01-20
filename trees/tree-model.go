@@ -74,6 +74,26 @@ func Reflect(tn *TreeNode) *TreeNode {
 	}
 }
 
+func IsReflection(t1 *TreeNode, t2 *TreeNode) bool {
+	if t1 == nil && t2 == nil {
+		return true
+	}
+	if t1 == nil || t2 == nil {
+		return false
+	}
+	return t1.Val == t2.Val && IsReflection(t1.Left, t2.Right) && IsReflection(t1.Right, t2.Left)
+}
+
+func IsSameTree(t1 *TreeNode, t2 *TreeNode) bool {
+	if t1 == nil && t2 == nil {
+		return true
+	}
+	if t1 == nil || t2 == nil {
+		return false
+	}
+	return t1.Val == t2.Val && IsSameTree(t1.Left, t2.Left) && IsSameTree(t1.Right, t2.Right)
+}
+
 func SliceInOrder(tn *TreeNode) []int {
 	if tn == nil {
 		return []int{}
@@ -93,6 +113,23 @@ func SlicePostOrder(tn *TreeNode) []int {
 		return []int{}
 	}
 	return append(append(SlicePostOrder(tn.Left), SlicePostOrder(tn.Right)...), tn.Val)
+}
+
+func SliceLevelOrder(tn *TreeNode) []int {
+	var helper func([]*TreeNode, []int) []int
+	helper = func(q []*TreeNode, result []int) []int {
+		if len(q) == 0 {
+			return result
+		}
+		if q[0].Left != nil {
+			q = append(q, q[0].Left)
+		}
+		if q[0].Right != nil {
+			q = append(q, q[0].Right)
+		}
+		return helper(q[1:], append(result, q[0].Val))
+	}
+	return helper([]*TreeNode{tn}, []int{})
 }
 
 func BalancedTreeInOrder(xs []int) *TreeNode {
@@ -131,6 +168,28 @@ func rev(xs []int) []int {
 		return []int{}
 	}
 	return append(rev(xs[1:]), xs[0])
+}
+
+func BalancedTreeLevelOrder(xs []int) *TreeNode {
+	var root *TreeNode
+	for _, x := range xs {
+		root = levelOrder(root, x)
+	}
+	return root
+}
+
+func levelOrder(tn *TreeNode, x int) *TreeNode {
+	if tn == nil {
+		return &TreeNode{
+			Val: x,
+		}
+	}
+	if x <= tn.Val {
+		tn.Left = levelOrder(tn.Left, x)
+	} else {
+		tn.Right = levelOrder(tn.Right, x)
+	}
+	return tn
 }
 
 func Search(tn *TreeNode, b int) (*TreeNode, error) {
