@@ -122,6 +122,9 @@ func Delete(xs *ListNode, idx int) *ListNode {
 }
 
 func Reverse(xs *ListNode) *ListNode {
+	if xs == nil {
+		return nil
+	}
 	return ReversePrepend(xs, nil)
 }
 

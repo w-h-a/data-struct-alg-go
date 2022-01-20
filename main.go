@@ -6,8 +6,10 @@ import (
 	"time"
 
 	"github.com/w-h-a/more-dsa/binarysearch"
+	"github.com/w-h-a/more-dsa/queues"
 	"github.com/w-h-a/more-dsa/recursion"
 	"github.com/w-h-a/more-dsa/sorting"
+	"github.com/w-h-a/more-dsa/stacks"
 	"github.com/w-h-a/more-dsa/trees"
 )
 
@@ -119,6 +121,26 @@ func main() {
 	tree8, _ := trees.Delete(tree7, 50)
 	fmt.Println("before delete: ", tree7.Right.Left.Left)
 	fmt.Println("after delete: ", tree8.Right.Left.Left)
+
+	fmt.Println(" ")
+	q := stacks.Constructor()
+	fmt.Println(q.Heads)
+	fmt.Println(q.Empty())
+	q.Push(1)
+	fmt.Println(q.Heads.Data)
+	_ = q.Pop()
+	fmt.Println(q)
+	fmt.Println(q.Empty())
+
+	fmt.Println(" ")
+	s := queues.Constructor()
+	s.Push(1)
+	fmt.Println("1 is in Heads of Popper", s.Popper.Heads)
+	s.Push(2)
+	fmt.Println("2 is in Heads of Popper", s.Popper.Heads)
+	s.Push(3)
+	fmt.Println("3 is in Heads of Popper", s.Popper.Heads)
+	fmt.Println(s.Top())
 }
 
 func randFloats(min, max float64, n int, result []float64) []float64 {

@@ -20,7 +20,7 @@ func Enq(q *Queue, x int) *Queue {
 		Heads: q.Heads,
 		Tails: &lists.ListNode{
 			Val:  x,
-			Next: q.Tails.Next,
+			Next: q.Tails,
 		},
 	})
 }
@@ -40,6 +40,10 @@ func Deq(q *Queue) (*Queue, error) {
 		Heads: q.Heads.Next,
 		Tails: q.Tails,
 	}), nil
+}
+
+func IsEmpty(q *Queue) bool {
+	return q.Heads == nil
 }
 
 func normalize(q *Queue) *Queue {

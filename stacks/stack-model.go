@@ -18,7 +18,7 @@ func Push(s *Stack, x int) *Stack {
 	return &Stack{
 		Data: &lists.ListNode{
 			Val:  x,
-			Next: s.Data.Next,
+			Next: s.Data,
 		},
 	}
 }
@@ -37,4 +37,8 @@ func Pop(s *Stack) (*Stack, error) {
 	return &Stack{
 		Data: s.Data.Next,
 	}, nil
+}
+
+func IsEmpty(s *Stack) bool {
+	return s.Data == nil
 }
