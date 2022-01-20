@@ -41,14 +41,12 @@ func main() {
 	tree1 := &trees.TreeNode{
 		Val: 4,
 		Left: &trees.TreeNode{
-			Val:   2,
-			Left:  &trees.TreeNode{Val: 1},
-			Right: &trees.TreeNode{Val: 3},
+			Val:   9,
+			Left:  &trees.TreeNode{Val: 5},
+			Right: &trees.TreeNode{Val: 1},
 		},
 		Right: &trees.TreeNode{
-			Val:   6,
-			Left:  &trees.TreeNode{Val: 5},
-			Right: &trees.TreeNode{Val: 7},
+			Val: 0,
 		},
 	}
 	fmt.Println(" ")
